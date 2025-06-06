@@ -1,0 +1,57 @@
+<mat-toolbar class="toolbar" color="primary">
+ <a mat-button matTooltip="Back to log in" routerLink="/login"><mat-icon>keyboard_backspace</mat-icon></a>
+  <span class="title">CINEREALM</span>
+  <span class="spacer"></span>
+</mat-toolbar>
+
+    <form #f="ngForm">
+      <h2>Sign up</h2>
+
+      <mat-form-field>
+        <input type="text" matInput placeholder="Name and surname" ngModel name="nameSurname" #nameSurnameInput="ngModel" required
+        (change)="updateNameSurname($event)">
+    
+    </mat-form-field>
+      <mat-form-field>
+        <input  type="text" matInput placeholder="Address" ngModel name="address" #addressInput="ngModel" required (change)="updateAddress($event)">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input type="text" matInput placeholder="City" ngModel name="city" #cityInput="ngModel" required (change)="updateCity($event)">
+    </mat-form-field>
+     
+    <mat-form-field>
+      <input type="text" matInput placeholder="Telephone" ngModel name="telephone" #telephoneInput="ngModel" required (change)="updateTelephone($event)">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="text" matInput placeholder="Email" ngModel name="email" 
+    pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" #emailValidation = "ngModel" required (change)="updateEmail($event)">
+    <mat-error *ngIf="emailValidation.invalid && emailValidation.touched">
+      Please enter a valid email address (e.g.,example&#64;example.com)
+  </mat-error>
+
+  </mat-form-field>
+   
+<mat-form-field>
+  <input type="text" matInput placeholder="Username" ngModel name="username" #usernameInput="ngModel" required (change)="updateUsername($event)">
+</mat-form-field>
+
+
+<mat-form-field>
+  <input type="text" matInput placeholder="Favorite genre" ngModel name="favGenre" #favGenreInput="ngModel" required (change)="updateFavGenre($event)">
+</mat-form-field>
+
+    <mat-form-field>
+        <input type="password" matInput placeholder="Password" ngModel name="password"
+      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" #passwordValidation = "ngModel" required (change)="updatePassword($event)">
+      <mat-error *ngIf="passwordValidation.invalid && passwordValidation.touched">
+        Password must be at least 8 characters, including 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.
+    </mat-error>
+
+     </mat-form-field>
+     
+      <button type="button" mat-raised-button (click)="doSignup(f)"> Sign up </button>
+
+    </form>
+ 

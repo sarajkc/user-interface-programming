@@ -1,0 +1,63 @@
+<mat-toolbar class="toolbar" color="primary">
+    <a mat-button routerLink="/"><mat-icon>keyboard_backspace</mat-icon></a>
+    <span class="title">CINEREALM</span>
+    <span class="spacer"></span>
+
+  </mat-toolbar>
+
+
+<div class="search-and-filter">
+<div class="filters">
+      <mat-form-field class="filter-field">
+        <mat-label >Genre</mat-label>
+        <mat-select [(value)]="selectedGenre" (selectionChange)="chooseGenre($event.value)" class="filter-select">
+          <mat-option [value]=null> </mat-option>
+          <mat-option *ngFor="let genre of getSearchGenre" [value]="genre">{{genre}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field  class="filter-field">
+        <mat-label>Sort by</mat-label>
+        <mat-select>
+          <mat-option  (click) ="sortByPriceDesc()">Highest price<mat-icon>arrow_upward</mat-icon>
+          </mat-option>
+          <mat-option (click) ="sortByPriceAsc()">Lowest price<mat-icon>arrow_downward</mat-icon>
+          </mat-option>
+          <mat-option  (click) ="sortByRatingDesc()">Highest rating<mat-icon>arrow_upward</mat-icon>
+          </mat-option>
+          <mat-option (click)="sortByRatingAsc()">Lowest rating<mat-icon>arrow_downward</mat-icon>
+          </mat-option>
+          <mat-option (click)="sortByDurationDesc()">Longest duration <mat-icon>arrow_upward</mat-icon>
+          </mat-option>
+          <mat-option (click)="sortByDurationAsc()">Shortest duration<mat-icon>arrow_downward</mat-icon>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+</div>
+
+      <div class="search">
+ <mat-form-field appearance="outline" class="search-box" >
+        <input matInput [(ngModel)] ="searchWords" (keyup)="filteredSearch()"name="search" placeholder="Search by title, actor or director">
+      </mat-form-field>
+      </div>
+</div>
+
+<div class="film-list">
+
+    <mat-card class="film-card" appearance="outlined" *ngFor="let film of filteredFilms">
+        <mat-card-header class="card-header">
+          <img mat-card-avatar src="assets/{{film.image}}" alt="mufasa" class="custom-avatar"/>
+    </mat-card-header>
+
+        <mat-card-title class="film-title">{{film.name}} <i class="fa-solid fa-star"></i>{{film.rating}} &nbsp; {{film.duration}}</mat-card-title>
+        <mat-card-content>
+         <p>Genre: {{film.genre}}</p>
+          <p>Description: {{film.description}}</p>
+          <p>Director: {{film.director}}</p>
+          <p>Actors: {{film.actors}}</p>
+          <p>Ticket price: {{film.ticketPrice}} RSD</p>
+        </mat-card-content>   
+ 
+      </mat-card>
+
+</div>
+  

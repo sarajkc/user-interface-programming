@@ -1,0 +1,126 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=star_rate" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+
+<mat-toolbar class="toolbar" color="primary">
+    <a mat-button routerLink="/"><mat-icon>keyboard_backspace</mat-icon></a>
+     <span class="title">CINEREALM</span>
+     <span class="spacer"></span>
+     <a mat-button (click)="doLogout()"><span class="material-symbols-outlined">
+        mode_off_on
+        </span></a>
+   </mat-toolbar>
+
+<mat-tab-group class="tabs">
+    <mat-tab label="Basic information">
+
+        <div class="tabContent-left">  
+    <form #f="ngForm" class="profile-form" *ngIf="active">
+        <h3>Change profile details</h3>
+        <mat-form-field>
+        <mat-label>Name and surname</mat-label>
+        <input matInput name="nameSurname" [(ngModel)]="active.nameSurname">
+        </mat-form-field>
+  
+        <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input matInput name="address" [(ngModel)]="active.address">
+     </mat-form-field>
+
+     <mat-form-field>
+        <mat-label>City</mat-label>
+        <input matInput name="city" [(ngModel)]="active.city">
+ </mat-form-field>
+
+ <mat-form-field>
+    <mat-label>Telephone</mat-label>
+    <input matInput name="telephone" [(ngModel)]="active.telephone">
+</mat-form-field>
+
+<mat-form-field>
+    <mat-label>Username</mat-label>
+    <input matInput name="username" [(ngModel)]="active.username">
+</mat-form-field>
+
+
+<mat-form-field>
+    <mat-label>Favorite genre</mat-label>
+    <input matInput name="favorite-genre" [(ngModel)]="active.favGenre">
+</mat-form-field>
+
+ <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput name="email" [(ngModel)]="active.email">
+  </mat-form-field>
+
+ <button mat-raised-button type="button" (click)="onSaveChanges()">Save changes</button>
+    </form>
+    </div>
+</mat-tab>
+
+<mat-tab label="Password">
+    <div class="tabContent-right">
+    <form class="password-form" >
+        <h3>Change password</h3>
+        <mat-form-field>
+        <mat-label>Old password </mat-label>
+        <input matInput type="password" [(ngModel)]="oldPassword" name="oldPassword" required>
+        </mat-form-field>
+  
+        <mat-form-field>
+            <mat-label>New password </mat-label>
+            <input matInput type="password" [(ngModel)]="newPassword"  name="newPassword" 
+            required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$$" #passwordValidation ="ngModel">
+            <mat-error *ngIf="passwordValidation.invalid && passwordValidation.touched">
+                Password must be at least 8 characters, including 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character.
+            </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button type="button" (click)="onSave()">Change password</button>
+    </form>
+</div>
+</mat-tab>
+
+
+<mat-tab label="Reviews">
+    <div class="tabContent-reviews">
+        <table mat-table [dataSource]="purchasedTickets" class="reviews-table">
+           
+         
+            <ng-container matColumnDef="film-name">
+              <th mat-header-cell *matHeaderCellDef> Film  </th>
+              <td mat-cell *matCellDef="let film "> {{film.name}} </td>
+            </ng-container>
+       
+            <ng-container matColumnDef="review">
+
+              <th mat-header-cell *matHeaderCellDef> Review </th>
+
+              <td mat-cell *matCellDef="let film"> 
+                <mat-form-field class="review-select">
+                    <mat-select [(ngModel)]="film.review" (selectionChange)="reviewFilm(film,film.review)">
+                        <mat-select-trigger>
+                           <span class="material-symbols-outlined">
+                                star_rate
+                                </span>   {{film.review}} 
+                        </mat-select-trigger>
+                      <mat-option *ngFor="let r of reviews" [value]="r">{{r}} 
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+              </td>
+            </ng-container>
+
+ 
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+</div>
+</mat-tab>
+
+
+
+
+
+

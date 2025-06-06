@@ -1,0 +1,29 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<mat-toolbar class="toolbar" color="primary">
+    <a mat-button routerLink="/"><mat-icon>keyboard_backspace</mat-icon></a>
+     <span class="title">CINEREALM</span>
+     <span class="spacer"></span>
+   </mat-toolbar>
+
+      <div class="login-form">
+       <form #f="ngForm">
+
+        <h2>Log in</h2>
+         <mat-form-field appearance="fill">
+           <input matInput placeholder="Email" [(ngModel)]="email" name="email" required/>
+           <mat-error>This field is required</mat-error>
+       </mat-form-field>
+
+       <mat-form-field>
+           <input matInput type="password"  placeholder="Password" [(ngModel)]="password" name="password" required/>
+          <mat-error>This field is required</mat-error>
+        </mat-form-field>
+      
+
+        <button mat-button type="button" (click)="doLogin(f)" class="log-in-button" > Log in </button>
+
+        <a mat-button routerLink="/signup" class="return">Don't have an account? Sign up!</a>
+    
+       </form>
+       
+       </div>

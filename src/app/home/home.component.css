@@ -1,0 +1,154 @@
+
+
+mat-toolbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 35px;
+  background-color: white;
+
+}
+
+.title {
+font-size: 40px;
+font-weight: bold;
+position: absolute;
+left: 43%;
+transform: translateX(-50%);
+animation: movingTitle 3s infinite ease-in-out;
+color: black;
+
+}
+
+@keyframes movingTitle {
+ 0%{
+  transform: translateY(-10px);
+ }
+ 100%{
+  transform: translateY(0);
+ }
+  
+}
+
+
+::ng-deep .account_menu{
+  width: 200px;
+  background-color: white !important;
+  padding: 10px;
+}
+
+
+::ng-deep .account_menu button{
+  width: 100%;
+  padding: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: white;
+  border-radius: 20px;
+  margin-bottom: 10px;
+
+}
+
+::ng-deep .account_menu button:active{
+background-color: #F5F5F5	;
+}
+
+
+
+img{
+  max-height: 400px;
+  margin: 0 auto;
+  display: block;
+
+}
+
+.container{
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-frame{
+  margin: 10px;
+  flex-basis: calc(25% - 2*10px);
+  background-color:white;
+  border-radius: 2%;
+  border-width: 3px;
+
+  
+}
+
+.card-frame img{
+  height: 400px;
+  object-fit: cover;
+  width: 100%;
+  
+}
+
+.card-frame mat-card-title{
+  margin-top: 10px;
+  font-size: 20px;
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.card-frame i{
+  color: rgb(235, 235, 29);
+}
+
+.card-frame mat-card-content{
+  height: 100px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.card-frame p{
+  margin-left: 10px;
+}
+
+.card-frame button{
+  background-color: black;
+  color: white;
+  margin-right: 10px;
+  
+
+}
+
+.upcoming-card-frame{
+  margin: 10px;
+  flex-basis: calc(25% - 2*10px);
+  background-color:white;
+  border-radius: 2%;
+  border-width: 3px;
+}
+
+.upcoming-card-frame img{
+  height: 400px;
+  object-fit: cover;
+  width: 100%;
+  
+}
+
+.upcoming-card-frame mat-card-title{
+  margin-top: 10px;
+  font-size: 20px;
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.upcoming-card-frame mat-card-content{
+  height: 190px;
+  margin-bottom: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+

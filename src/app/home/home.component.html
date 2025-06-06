@@ -1,0 +1,70 @@
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<mat-toolbar class="toolbar" color="primary">
+
+<a mat-button (click)="doLogout()"><span class="material-symbols-outlined">
+  mode_off_on
+  </span></a>
+ 
+ <span class="title">CINEREALM</span>
+ 
+  <span class="spacer"></span>
+  <div class="icons">
+  <a mat-button routerLink="/search">	<mat-icon>search</mat-icon>
+    </a>
+  <a mat-button routerLink="/cart"><mat-icon>shopping_basket</mat-icon></a>
+
+<button mat-button [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
+<mat-menu #menu="matMenu" class="account_menu">
+  <button mat-menu-item routerLink="/profile">Profile</button>
+  <button mat-menu-item routerLink="/login">Log In</button>
+  <button mat-menu-item routerLink="/signup">Sign Up</button>
+
+</mat-menu>
+
+</div>
+</mat-toolbar>
+
+<div class="banner">
+  <img src="assets/scattered-popcorn-box-with-videotape (1).jpg" alt="cinemaBanner"/>
+</div>
+
+
+<mat-tab-group class="tabs-cinema-schedule">
+  <mat-tab label="WHAT'S ON">
+    <div *ngIf="films" class="container">
+      <mat-card class="card-frame"appearance="outlined" *ngFor="let film of films">
+          <img mat-card-image [src]= "'assets/'+ film.image "alt="film_image">
+        <mat-card-title>{{ film.name }} <i class="fa-solid fa-star"></i>{{film.rating}}</mat-card-title> 
+        <mat-card-content>{{film.description}}</mat-card-content>
+        
+        <mat-card-actions>
+          Book at: &nbsp;  
+          <button mat-button *ngFor="let time of film.screening" (click)="reserveFilm(film,time)">{{time}}</button>
+        </mat-card-actions>
+      </mat-card>
+      </div>
+  </mat-tab>
+
+
+  <mat-tab label="COMING TO CINEMAS"> 
+    <div *ngIf="films" class="container">
+      <mat-card class="upcoming-card-frame"appearance="outlined" *ngFor="let film of upcomingFilms">
+          <img mat-card-image [src]= "'assets/'+ film.image "alt="film_image">
+        <mat-card-title>{{ film.name }}</mat-card-title> 
+        <mat-card-content class="upcoming-card-content">{{film.description}}<br><br>
+          <b>Director:</b> {{film.director}}<br>
+          <b>Actors: </b>{{film.actors}}<br><br>
+          <mat-card-footer><span class="material-symbols-outlined">
+            event_upcoming
+            </span>
+            &nbsp;<b>{{film.screening_date| date: 'MMMM d, y'}}</b></mat-card-footer>
+          </mat-card-content>
+        
+      </mat-card>
+      </div>
+  
+  </mat-tab>
+</mat-tab-group>
+
