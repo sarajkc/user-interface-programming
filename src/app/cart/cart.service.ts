@@ -29,5 +29,7 @@ getItemsFromCart(): any[]{
     return json ? JSON.parse(json) : []
 }
 
-
+clearItemsFromCart(): void {
+    localStorage.removeItem('cart')
+    }
 }
