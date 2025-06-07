@@ -30,9 +30,4 @@ getItemsFromCart(): any[]{
 }
 
 
-clearItemsFromCart() : void{
-    localStorage.removeItem('cart')
-    
-}
-
 }
